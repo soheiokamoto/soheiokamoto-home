@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  http_basic_authenticate_with name: AUTH_CONFIG['username'], password: AUTH_CONFIG['password'], except: :show_page
+  http_basic_authenticate_with name: ENV['username'], password: ENV['password'], except: :show_page
   
   def index
   	@pages = Page.all

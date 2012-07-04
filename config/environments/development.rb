@@ -34,4 +34,7 @@ SoheiokamotoHome::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  ENV['username'] = 'admin'
+  ENV['password'] = 'secret1234'
 end
