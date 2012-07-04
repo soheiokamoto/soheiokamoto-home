@@ -1,4 +1,4 @@
-class CreatePages < ActiveRecord::Migration
+class CreatePage < ActiveRecord::Migration
   def change
     create_table :pages do |t|
       t.integer :parent_page_id
