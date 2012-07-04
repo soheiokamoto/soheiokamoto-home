@@ -1,0 +1,27 @@
+<%= form_for(@page) do |f| %>
+
+  <%= f.label :parent_page_id %>
+  <%= f.collection_select(:parent_page_id, Page.all, :id, :title, {include_blank: true}) %>
+  
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.label :filename %>
+  <%= f.text_field :filename %>
+
+  <%= f.label :page_order %>
+  <%= f.text_field :page_order %>
+
+  <%= f.label :visible %>
+  <%= f.check_box :visible %>
+  
+  <% if defined?(submit) %>
+    <%= f.submit submit %>
+  <% else %>
+    <%= f.submit %>
+  <% end %>
+  
+<% end %>

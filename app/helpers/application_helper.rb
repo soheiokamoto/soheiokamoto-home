@@ -10,4 +10,8 @@ module ApplicationHelper
     end
   end
   
+  def check_box_image(boolean)
+    image_tag "check-box-#{boolean}.png", class: "check-box-image", alt: boolean
+  end
+  
 end

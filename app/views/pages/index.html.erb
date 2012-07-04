@@ -1,0 +1,25 @@
+<% provide(:title, 'Show All Pages') %>
+
+<h1>Page Management</h1>
+
+<%= render 'menu' %>
+
+<h2>Show All Pages</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>parent page</th>
+      <th>title</th>
+      <th>url</th>
+      <th>filename</th>
+      <th>page order</th>
+      <th>visible</th>
+      <th></th>
+    </tr>
+  </thead>
+    
+  <%= render @pages %>
+</table>
+
+<br />

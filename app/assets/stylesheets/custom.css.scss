@@ -1,102 +1,234 @@
-@import "bootstrap";
-
-/* mixins, variables, etc. */
-
-$grayMediumLight: #eaeaea;
-
-/* universal */
-
-html {
-  overflow-y: scroll;
+body, div, td, th, h1, h2, h3, h4 { /* redundant rules for bad browsers  */  
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	font-size: small;
+	color: #333333;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  padding-top: 60px;
+  width: 900px;
+  margin: auto;
+  background: #eeeeee;
 }
 
-section {
-  overflow: auto;
+@mixin box-shadow($h-shadow: 0px, $v-shadow: 0px, $blur: 7px, $color: #888888) {
+  box-shadow: $h-shadow $v-shadow $blur $color;
+  -moz-box-shadow: $h-shadow $v-shadow $blur $color;
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $color;
 }
 
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
+@mixin border-radius($length: '', $direction: '') {
+  @if $length == '' {
+    $length: 5px;
+  }
+  
+  @if $direction == '' {
+    border-radius: $length;
+    -moz-border-radius: $length;
+    -webkit-border-radius: $length;
+  }
+  @else {
+    border-#{$direction}-radius: $length;
+    -moz-border-#{$direction}-radius: $length;
+    -webkit-border-#{$direction}-radius: $length;
   }
 }
 
-/* typography */
+$border-bottom-radius: 7px;
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+.site-container {
+  @include box-shadow;
+  @include border-radius($border-bottom-radius, bottom-left);
+  @include border-radius($border-bottom-radius, bottom-right);
+}
+
+.navigation-bar {
+  height: 25px;
+  padding: 3px 10px 0px 10px;
+  border: 1px solid #333333;
+  background: #222222;
+  
+  #logo {
+    font-size:1.3em;
+  }
+  
+  a {
+    float: left;
+    font-size: 1.2em;
+    color: #dfdfdf;
+    text-decoration: none;
+            
+    &:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+  
+  nav {
+    margin-top: 1px;
+    margin-left: 350px;
+  }
+}
+
+footer {
+  height: 25px;
+  padding: 6px 10px 0px 10px;
+  border: 1px solid #cccccc;
+  border-top: none;
+  @include border-radius($border-bottom-radius, bottom-left);
+  @include border-radius($border-bottom-radius, bottom-right);
+  background: #e5e5e5;
+  
+  nav {
+    float: right;
+  }
+}
+  
+.container {
+  padding: 15px 30px 30px 30px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
 }
 
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+  margin: 5px 0px 15px 0px;
+  font-size: 1.7em;
+  font-weight: bold;
 }
 
 h2 {
-  font-size: 1.7em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
+  margin: 5px 0px 15px 0px;
+  font-size: 1.5em;
   font-weight: normal;
-  color: $grayLight;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+.form {
+  display:inline-block;
+  padding: 5px 20px;
+  border: 1px solid #bbbbbb;
+  @include border-radius;
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+  background-color: #e0e0ff;
 }
 
-
-/* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
+label, .label-view {
+  display: block;
+  margin-top: 12px;
   font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
+  
+  &:first-letter {
+    text-transform: capitalize;
   }
 }
 
-/* footer */
+.input {
+  display: block;
+  height: 24px;
+  width: 200px;
+  margin: 2px 0px;
+  padding: 3px 6px;
+  border: 1px solid #c4c4c4;
+  @include border-radius;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover { 
-      color: $grayDarker;
-    }
-  }  
-  small { 
-    float: left; 
+.input-focus {
+  outline: none;
+  border: 1px solid #88bbff;
+  @include box-shadow(0, 0, 5px, #88bbff);
+}
+
+input {
+  &[type="button"], &[type="submit"] {
+    margin: 20px 0px 10px 0px;
   }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
+  
+  &[type="text"], &[type="password"] {
+    @extend .input;
+    
+    &:focus {
+      @extend .input-focus;
     }
+  }
+  
+  &[type="checkbox"] {
+    display: block;
+    height: 24px;
+    margin: 1px 0px 3px;
   }
 }
+
+select {
+  @extend .input;
+  padding: 1px 3px 1px 3px;
+
+  &:focus {
+    @extend .input-focus;
+  }
+}
+
+.input-view {
+  @extend .input;
+  padding: 3px 7px;
+  background-color: #f0f0f0;
+}
+
+.input-view-check-box {
+    display: block;
+    height: 23px;
+    margin: 4px 0px 0px;
+}
+
+.check-box-image {
+    margin-top: 1px;
+}
+
+
+$table-border: #aaaaaa;
+
+table {
+  border-spacing: 0;
+  border: 1px solid $table-border;
+  @include border-radius;
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+  text-align: center;
+}
+
+th, td {
+  padding: 7px;
+  border-bottom: 1px solid $table-border;
+  border-right: 1px solid $table-border;
+  
+  &:last-child {
+    border-right: none;
+  }
+}
+
+th {
+  &:first-child {
+    @include border-radius('', top-left);
+  }
+  &:last-child {
+    @include border-radius('', top-right);
+  }
+  
+  background-color: #e0e0ff;
+}
+
+tr:last-child td {
+  border-bottom: none;
+  
+  &:first-child {
+    @include border-radius('', bottom-left);
+  }
+  &:last-child {
+    @include border-radius('', bottom-right);
+  }
+}
+

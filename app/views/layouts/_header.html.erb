@@ -1,12 +1,8 @@
-<header class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "Sohei Okamoto's Home", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+<header class="navigation-bar">
+  <%= link_to "Sohei Okamoto's Home", root_path, id: "logo" %>
+  <nav>
+    <% navigation_menus.each do |menu| %>
+      <%= link_to menu.title, show_page_path(menu.url) %>
+    <% end %>
+  </nav>
 </header>

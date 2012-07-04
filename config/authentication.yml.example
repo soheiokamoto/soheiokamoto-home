@@ -1,0 +1,12 @@
+defaults: &DEFAULTS
+  username: admin
+  password: secret1234
+
+development:
+  <<: *DEFAULTS
+
+test:
+  <<: *DEFAULTS
+
+production:
+  <<: *DEFAULTS

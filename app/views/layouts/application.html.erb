@@ -8,9 +8,11 @@
     <%= render 'layouts/shim' %>    
   </head>
   <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <%= yield %>
+    <div class="site-container">
+      <%= render 'layouts/header' %>
+      <div class="container">
+        <%= yield %>
+      </div>
       <%= render 'layouts/footer' %>
     </div>
   </body>

@@ -1,0 +1,31 @@
+<span class="label-view">parent page</span>
+<span class="input-view"><%= @page.parent_page.title if @page.parent_page %></span>
+
+<span class="label-view">title</span>
+<span class="input-view"><%= @page.title %></span>
+
+<span class="label-view">url</span>
+<span class="input-view"><%= @page.url %></span>
+
+<span class="label-view">filename</span>
+<span class="input-view"><%= @page.filename %></span>
+
+<span class="label-view">page order</span>
+<span class="input-view"><%= @page.page_order %></span>
+
+<span class="label-view">visible</span>
+<span class="input-view-check-box"><%= check_box_image @page.visible? %></span>
+
+<br />
+<%= link_to "Edit", edit_page_path %>
+| 
+<%= link_to "Delete", @page, method: :delete, data: {confirm: "Are you sure?"} %>
+
+<br />
+<br />
+
+<% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>
+  <%= render "pages/partials/#{@page.filename}" %>
+<% else %>
+  Page not found.
+<% end %>
