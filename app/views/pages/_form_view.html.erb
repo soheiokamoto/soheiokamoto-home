@@ -21,11 +21,4 @@
 | 
 <%= link_to "Delete", @page, method: :delete, data: {confirm: "Are you sure?"} %>
 
-<br />
-<br />
-
-<% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>
-  <%= render "pages/partials/#{@page.filename}" %>
-<% else %>
-  Page not found.
-<% end %>
+<div class="clear"></div>

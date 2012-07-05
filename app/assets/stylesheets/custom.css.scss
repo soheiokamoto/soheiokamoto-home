@@ -2,7 +2,7 @@ body, div, td, th, h1, h2, h3, h4 { /* redundant rules for bad browsers  */
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	voice-family: "\"}\"";
 	voice-family: inherit;
-	font-size: small;
+	font-size: normal;
 	color: #333333;
 	margin: 0;
 	padding: 0;
@@ -38,6 +38,7 @@ body {
 }
 
 $border-bottom-radius: 7px;
+$side-padding: 25px;
 
 .site-container {
   @include box-shadow;
@@ -46,18 +47,18 @@ $border-bottom-radius: 7px;
 }
 
 .navigation-bar {
-  height: 25px;
-  padding: 3px 10px 0px 10px;
+  height: 24px;
+  padding: 4px 10px 0px 10px;
   border: 1px solid #333333;
   background: #222222;
   
   #logo {
-    font-size:1.3em;
+    font-size: 1.1em;
   }
   
   a {
     float: left;
-    font-size: 1.2em;
+    font-size: 1.0em;
     color: #dfdfdf;
     text-decoration: none;
             
@@ -82,27 +83,47 @@ footer {
   @include border-radius($border-bottom-radius, bottom-right);
   background: #e5e5e5;
   
+  .copyright {
+    padding-top: 3px; 
+    font-size: 0.75em;
+  }
+  
+  /*
   nav {
     float: right;
   }
+  */
 }
   
 .container {
-  padding: 15px 30px 30px 30px;
+  padding: 15px $side-padding 30px $side-padding;
   border: 1px solid #cccccc;
+  font-size: 0.9em;
   background: #ffffff;
 }
 
 h1 {
-  margin: 5px 0px 15px 0px;
-  font-size: 1.7em;
-  font-weight: bold;
+  margin: 5px 0px 10px 0px;
+  font-size: 1.4em;
+  font-weight: normal;
 }
 
 h2 {
-  margin: 5px 0px 15px 0px;
-  font-size: 1.5em;
+  margin: 5px 0px 10px 0px;
+  font-size: 1.2em;
   font-weight: normal;
+}
+
+p {
+  margin: 0px 0px 10px 0px;
+}
+
+a { 
+  text-decoration: none;
+  
+  &:hover {
+  text-decoration: underline;
+  }
 }
 
 .form {
@@ -189,7 +210,6 @@ select {
     margin-top: 1px;
 }
 
-
 $table-border: #aaaaaa;
 
 table {
@@ -230,5 +250,21 @@ tr:last-child td {
   &:last-child {
     @include border-radius('', bottom-right);
   }
+}
+
+.clear {
+  clear: both;
+}
+
+.page-show {
+  margin-top: 30px;
+  border-top: 1px solid #bbbbbb;
+}
+
+.decorated-image {
+  padding: 4px;
+  border: 1px solid #bbbbbb;
+  @include border-radius;
+  @include box-shadow(0, 0, 5px, #aaaaaa);
 }
 

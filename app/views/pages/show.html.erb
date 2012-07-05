@@ -10,3 +10,12 @@
   <%= render 'form_view' %>
 </div>
 
+<div class="page-show">
+  <% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>
+    <%= render "pages/partials/#{@page.filename}" %>
+  <% else %>
+    Page not found.
+  <% end %>
+</div>
+
+<div class="clear"></div>
