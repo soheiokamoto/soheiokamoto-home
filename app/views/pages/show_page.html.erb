@@ -1,11 +1,13 @@
-<% provide(:page_title, @page.title) %>
-
-<div>
-  <% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>
-    <%= render "pages/partials/#{@page.filename}" %>
-  <% else %>
-    Page not found.
-  <% end %>
-</div>
-
-<div class="clear"></div>
+<% if !@page.nil? %>
+  <% provide(:page_title, @page.title) %>
+  
+  <div>
+    <% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>
+      <%= render "pages/partials/#{@page.filename}" %>
+    <% else %>
+      Page not found.
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+<% end %>
