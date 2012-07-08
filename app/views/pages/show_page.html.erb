@@ -1,4 +1,4 @@
-<% provide(:title, @page.title) %>
+<% provide(:page_title, @page.title) %>
 
 <div>
   <% if File.exists?(Rails.root.join("app", "views", params[:controller], "partials", "_#{@page.filename}.html.erb")) %>

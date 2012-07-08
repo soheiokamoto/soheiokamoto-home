@@ -1,0 +1,12 @@
+<% child_pages = visible_child_pages(url) %>
+<% if !child_pages.nil? %>
+  <nav>
+    <ul>
+      <% child_pages.each do |page| %>
+        <li>
+          <%= link_to page.title, show_page_path(page.url) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>

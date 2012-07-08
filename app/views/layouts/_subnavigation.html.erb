@@ -1,0 +1,27 @@
+<% if params[:url] != top_level_url %>
+  <% sibling_pages = visible_sibling_pages(params[:url]) %>
+  <% if !sibling_pages.nil? %>
+    <nav>
+      <ul>
+        <% sibling_pages.each do |page| %>
+          <li class="<%= 'current' if params[:url] == page.url %>">
+            <%= link_to page.title, show_page_path(page.url) %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  <% end %>
+<% end %>
+
+<% child_pages = visible_child_pages(params[:url]) %>
+<% if !child_pages.nil? %>
+  <nav>
+    <ul>
+      <% child_pages.each do |page| %>
+        <li class="<%= 'current' if params[:url] == page.url %>">
+          <%= link_to page.title, show_page_path(page.url) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="breadcrumb">
+  <% ancestor_pages = visible_ancestor_pages(params[:url]) %>
+  <% if !ancestor_pages.nil? %>
+    <ul>
+      <% ancestor_pages.each do |page| %>
+        <li>
+          <span class="arrow">&#187;</span>
+          <% if params[:url] == page.url %>
+            <%= page.title %>
+          <% else %>
+            <%= link_to page.title, show_page_path(page.url) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

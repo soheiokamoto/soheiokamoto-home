@@ -1,7 +1,9 @@
 <h1>About Me</h1>
 
-<div style="float: right; margin: 0px 58px 20px 62px;">
-  <%= image_tag "sohei_lake_tahoe.jpg", class: "decorated-image", alt: "Sohei at Lake Tahoe" %>
+<%= render 'layouts/child_pages_navigation', :url => @page.url %>
+        
+<div class="self-image">
+  <%= image_tag "sohei_lake_tahoe_225x300.jpg", class: "decorated-image", alt: "Sohei at Lake Tahoe" %>
 </div>
 
 <p>
@@ -20,3 +22,8 @@
   My most recent assignment as Postdoctoral Scholar at UNR involves me as a member of the Cyberinfrastructure team in the NSF-funded project "Nevada Infrastructure for Climate Change, Education, and Science". My job is to perform research and software engineering work on creating software frameworks that support interdisciplinary climate change research.
 </p>
 
+<div class="resume">
+  <%= link_to "R&#233;sum&#233;".html_safe, "resume_sohei_okamoto.pdf", :target => '_blank' %>
+  <br />
+  <%= link_to image_tag("resume_sohei_okamoto.png", class: "decorated-image", alt: "Sohei Okamoto's Resume"), "resume_sohei_okamoto.pdf", :target => '_blank' %>
+</div>

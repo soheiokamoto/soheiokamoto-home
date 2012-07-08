@@ -1,8 +1,16 @@
 <header class="navigation-bar">
   <%= link_to "Sohei Okamoto's Home", root_path, id: "logo" %>
+  
   <nav>
-    <% navigation_menus.each do |menu| %>
-      <%= link_to menu.title, show_page_path(menu.url) %>
-    <% end %>
+    <ul>
+      <% top_level_pages = visible_child_pages %>
+      <% if !top_level_pages.nil? %>
+        <% top_level_pages.each do |page| %>
+          <li class="<%= 'current' if page.url == top_level_url %>">
+            <%= link_to page.title, show_page_path(page.url) %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
   </nav>
 </header>

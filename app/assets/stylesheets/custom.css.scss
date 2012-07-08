@@ -14,10 +14,10 @@ body {
   background: #eeeeee;
 }
 
-@mixin box-shadow($h-shadow: 0px, $v-shadow: 0px, $blur: 7px, $color: #888888) {
-  box-shadow: $h-shadow $v-shadow $blur $color;
-  -moz-box-shadow: $h-shadow $v-shadow $blur $color;
-  -webkit-box-shadow: $h-shadow $v-shadow $blur $color;
+@mixin box-shadow($h-shadow: 0px, $v-shadow: 0px, $blur: 7px, $color: #888888, $inset: '') {
+  box-shadow: $h-shadow $v-shadow $blur $color #{$inset};
+  -moz-box-shadow: $h-shadow $v-shadow $blur $color #{$inset};
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $color #{$inset};
 }
 
 @mixin border-radius($length: '', $direction: '') {
@@ -47,18 +47,17 @@ $side-padding: 25px;
 }
 
 .navigation-bar {
-  height: 24px;
-  padding: 4px 10px 0px 10px;
+  height: 23px;
+  padding: 5px 10px 0px 10px;
   border: 1px solid #333333;
   background: #222222;
-  
+    
   #logo {
+    float: left;
     font-size: 1.1em;
   }
   
   a {
-    float: left;
-    font-size: 1.0em;
     color: #dfdfdf;
     text-decoration: none;
             
@@ -69,14 +68,46 @@ $side-padding: 25px;
   }
   
   nav {
-    margin-top: 1px;
-    margin-left: 350px;
+    margin-left: 270px;
+    
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      li {
+        float: left;
+        height: 21px;
+        margin: 0px 0px 0px 20px;
+        padding: 1px 10px;
+        
+        &.current {
+          padding: 1px 9px;
+          border: 1px solid #cccccc;
+          @include border-radius(5px, top-left);
+          @include border-radius(5px, top-right);
+          border-bottom: 1px solid #ffffff;
+          background: #ffffff;
+          
+          a {
+            color: #333333;
+          }
+        }
+      }
+    }
   }
+}
+
+.container {
+  padding: 15px $side-padding 30px $side-padding;
+  border: 1px solid #cccccc;
+  font-size: 0.9em;
+  background: #ffffff;
 }
 
 footer {
   height: 25px;
-  padding: 6px 10px 0px 10px;
+  padding: 6px $side-padding 0px $side-padding;
   border: 1px solid #cccccc;
   border-top: none;
   @include border-radius($border-bottom-radius, bottom-left);
@@ -94,16 +125,9 @@ footer {
   }
   */
 }
-  
-.container {
-  padding: 15px $side-padding 30px $side-padding;
-  border: 1px solid #cccccc;
-  font-size: 0.9em;
-  background: #ffffff;
-}
 
 h1 {
-  margin: 5px 0px 10px 0px;
+  margin: 15px 0px 10px 0px;
   font-size: 1.4em;
   font-weight: normal;
 }
@@ -120,9 +144,45 @@ p {
 
 a { 
   text-decoration: none;
+  color: #3333cc;
   
   &:hover {
   text-decoration: underline;
+  color: #6688dd;
+  }
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  
+  li {
+    margin: 0px 0px 10px 25px;
+    padding: 0px 0px 0px 5px;
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  
+    li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      
+      .arrow {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #555599;
+        padding: 0px 2px 0px 1px;
+      }
+    }
   }
 }
 
@@ -266,5 +326,113 @@ tr:last-child td {
   border: 1px solid #bbbbbb;
   @include border-radius;
   @include box-shadow(0, 0, 5px, #aaaaaa);
+}
+
+
+/* page specific css */
+
+.self-image {
+  float: right;
+  margin: 2px 60px 0px 75px;
+}
+
+.resume {
+  clear: both;
+  width: 430px;
+  margin-top: 30px;
+  text-align: center;
+  
+  a {
+    font-weight: bold;
+  }
+  
+  img {
+    margin: 3px;
+    
+    &:hover {
+      border: 1px solid #88bbff;
+      @include box-shadow(0, 0, 10px, #88bbff);
+    }
+  }
+}
+
+
+.work-experience-list {
+  width: 740px;
+  margin: 20px 15px;
+  @include border-radius(7px);
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+}
+  
+.work-experience-block {
+  padding: 15px 15px;
+  border-bottom: 1px solid #cfcfcf;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.work-experience-position-block {
+  float: left;
+  width: 375px;
+  height: 50px;
+}
+
+.work-experience-position {
+}
+
+.work-experience-duration {
+  float: left;
+  width: 155px;
+}
+
+.work-experience-title {
+  float: left;
+  font-weight: bold;
+  color: #444444;
+}
+
+.work-experience-institution {
+  float: left;
+  width: 325px;
+  font-weight: bold;
+  color: #444444;
+}
+
+.work-experience-description {
+  clear: both;
+  padding-right: 10px;
+}
+
+.publication-list {
+  width: 770px;
+  margin: 20px 15px;
+  @include border-radius(7px);
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+}
+
+.publication-block {
+  padding: 15px 15px;
+  border-bottom: 1px solid #cfcfcf;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+ 
+.listing-title {
+  font-weight: bold;
+  color: #444444;
+  margin-bottom: 5px;
+}
+
+.listing-authors {
+  margin-bottom: 7px;
+}
+
+.author-emphasis {
+  color: #4444aa;
+  text-decoration: underline;
 }
 

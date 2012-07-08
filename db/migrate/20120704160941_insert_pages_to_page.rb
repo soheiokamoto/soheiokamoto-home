@@ -6,6 +6,6 @@ class InsertPagesToPage < ActiveRecord::Migration
 
   def down
     Page.delete_all(url: 'root')
-    Page.delete_all(url: 'Home')
+    Page.delete_all(url: 'home')
   end
 end
