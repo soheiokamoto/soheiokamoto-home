@@ -55,7 +55,6 @@ $side-padding: 25px;
     
   #logo {
     float: left;
-    font-size: 1.1em;
   }
   
   a {
@@ -81,6 +80,7 @@ $side-padding: 25px;
         height: 21px;
         margin: 0px 0px 0px 20px;
         padding: 1px 10px;
+        font-size: 0.9em;
         
         &.current {
           padding: 1px 9px;
@@ -334,7 +334,7 @@ tr:last-child td {
 
 .self-image {
   float: right;
-  margin: 2px 60px 0px 75px;
+  margin: 2px 60px 20px 75px;
 }
 
 .resume {
@@ -363,12 +363,12 @@ tr:last-child td {
   }
   
   &:hover {
-    img {
+    .decorated-image {
         border: 1px solid #88bbff;
-        @include box-shadow(0, 0, 10px, #88bbff);
+        @include box-shadow(0, 0, 7px, #88bbff);
     }
     span {
-        @include box-shadow(0, 0, 5px, #999999);
+        @include box-shadow(0, 0, 8px, #999999);
       background-color: #555555;
       color: #ffffff;
     }
