@@ -160,7 +160,7 @@ ul {
   
   li {
     margin: 0px 0px 10px 25px;
-    padding: 0px 0px 0px 5px;
+    padding: 0;
   }
 }
 
@@ -339,20 +339,55 @@ tr:last-child td {
 
 .resume {
   clear: both;
-  width: 430px;
-  margin-top: 30px;
-  text-align: center;
+  width: 275px;
+  margin: 40px 0px 0px 25px;
+  position: relative;
   
-  a {
-    font-weight: bold;
+  span {
+    position: absolute;
+    left: -20px;
+    padding: 6px 15px;
+    
+    border: 2px solid #ffffff;
+    @include border-radius(20px);
+    @include box-shadow(0, 0, 5px, #666666);
+    background-color: #404040;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: normal;
+    color: #ffffff;
   }
   
   img {
-    margin: 3px;
+    margin-top: 20px;
+  }
+  
+  &:hover {
+    img {
+        border: 1px solid #88bbff;
+        @include box-shadow(0, 0, 10px, #88bbff);
+    }
+    span {
+        @include box-shadow(0, 0, 5px, #999999);
+      background-color: #555555;
+      color: #ffffff;
+    }
+  }
+}
+
+
+.about-me-child-pages {
+  margin-top: 40px;
+  font-size: 1.2em;
+  font-weight: normal;
+  
+  ul {
+    margin: 0;
+    padding: 0;
     
-    &:hover {
-      border: 1px solid #88bbff;
-      @include box-shadow(0, 0, 10px, #88bbff);
+    li {
+      margin: 0px 0px 25px 25px;
+      padding: 0;
     }
   }
 }
@@ -422,18 +457,18 @@ tr:last-child td {
   }
 }
  
-.listing-title {
+.publication-title {
   font-weight: bold;
   color: #444444;
   margin-bottom: 5px;
 }
 
-.listing-authors {
+.publication-authors {
   margin-bottom: 7px;
-}
-
-.author-emphasis {
-  color: #4444aa;
-  text-decoration: underline;
+  
+  .author-emphasis {
+    color: #4444aa;
+    text-decoration: underline;
+  }
 }
 
