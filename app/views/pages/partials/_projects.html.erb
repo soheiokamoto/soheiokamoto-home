@@ -1,0 +1,123 @@
+<%= render 'layouts/breadcrumb' %>
+
+<h1><%= @page.title %></h1>
+(Selected for Showcase)
+
+<%= render 'layouts/child_pages_navigation', :url => @page.url %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      // hide
+      $('.display-div').hide();
+      $('.toggle-next-display-div').text("[Show detail]");
+      
+      //toggle next display div
+      $('.toggle-next-display-div').click(function(){
+          var next_display = $(this).next(".display-div").css("display");  
+          if( next_display == "block" )
+          {
+              $(this).text("[Show detail]");
+          }
+          else
+          {
+              $(this).text("[Hide detail]");
+          }
+          
+          $(this).next(".display-div").slideToggle("fast");
+          
+          return true;
+      });
+         
+      // toggle all display div
+      $('.toggle-all-display-div').click(function(){
+          if( $(this).text() == "[Hide All]" )
+          {
+              $('.display-div').hide();
+              $('.toggle-next-display-div').text("[Show detail]");
+              
+              $(this).text("[Show All]");
+          }
+          else
+          {
+              $('.display-div').show();
+              $('.toggle-next-display-div').text("[Hide detail]");
+              
+              $(this).text("[Hide All]");
+          }
+          
+          return true;
+      });
+  });
+  
+</script>
+
+<br />
+<div class="toggle-all-display-div">[Show All]</div>
+
+<div class="project-list">
+  
+  <div class="project-block">
+    <div class="project-title">SUNPRISM: Software Framework for Climate Change Research</div>
+    <div class="toggle-next-display-div"></div>
+    <div class="display-div">
+      <div class="project-description">
+        <p>SUNPRISM is a software framework aimed at supporting scientific investigation via new capabilities for combining data transformations, model simulations, and output visualizations in application scenarios developed for climate change research.</p>
+        <p>The SUNPRISM framework’s defining characteristics are a visual, user-friendly object-based interface for scenario configuration; a workflow-based environment that allows code generation and dataflow scenario execution; and data visualization capabilities for 3D environments, including for immersive virtual environments such as CAVE.</p>
+        <p>The software has been developed as a part of the research assistantship funded by NSF EPSCoR, and as a part of my Ph.D. dissertation, at the University of Nevada, Reno.</p>
+        <p><b>Related Skills:</b> Qt, C++, Python, OpenGL, Immersive 3D (CAVE), XML, Web Service</p>
+        
+        <div class="project-screenshot">
+          <%= image_tag "sunprism_scenario_manager.png", class: "screenshot", id: "sunprism-scenario-manager", alt: "SUNPRISM Scenario Manager" %>
+          <%= image_tag "sunprism_visualizer.png", class: "screenshot", id: "sunprism-visualizer", alt: "SUNPRISM Visualizer" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="project-block">
+    <div class="project-title">Alternative Media Information System (AMIS)</div>
+    <div class="toggle-next-display-div"></div>
+    <div class="display-div">
+      <div class="project-description">
+        <p>AMIS is a web-based database application, which facilitates tracking of students’ alternative media requests, material acquisition, and processing, as well as deliveries to students.</p>
+        <p>The software has played crucial roles to track hundreds of requests and processes simultaneously in timely manner, to be in compliance with the Americans with Disabilities Act (ADA) and Section 504 of the Rehabilitation Act.</p>
+        <p>The software has been developed as a part of the graduate assistantship through the Disability Resource Center at the University of Nevada, Reno.</p>
+        <p><b>Related Skills:</b> PHP, MySQL, HTML, CSS, Javascript, CakePHP, jQuery</p>
+        
+        <%= image_tag "amis.png", class: "screenshot", alt: "Alternative Media Information System (AMIS)" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="project-title">Survey Builder</div>
+    <div class="toggle-next-display-div"></div>
+    <div class="display-div">
+      <div class="project-description">
+        <p>Customizable survey builder was developed to create and run surveys such as end-of-semester student surveys. The survey builder allows creation of surveys with various question types, such as radio box, check box, text, and multiline text answers, where each question can be set as required or optional. In addition, specific subsections can be set as required based on particular answers, allowing customized survey based on participants’ selections. The survey builder also supports e-mail verification to disallow duplicate submissions, and automated reports generation.</p>
+        <p>The software has been developed as a part of the graduate assistantship through the Disability Resource Center at the University of Nevada, Reno.</p>
+        <p><b>Related Skills:</b> PHP, MySQL, HTML, Javascript, CSS</p>
+        
+        <%= image_tag "survey_builder.png", class: "screenshot", id: "survey-builder", alt: "Survey Builder" %>
+        <%= image_tag "survey_builder_report.png", class: "screenshot", id: "survey-builder-report", alt: "Survey Builder Report" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="project-title">Energy Estimation Wheels</div>
+    <div class="toggle-next-display-div"></div>
+    <div class="display-div">
+      <div class="project-description">
+        <p>A wheel to estimate the total energy expenditure (TEE) is developed using cascaded circular slide rules. Resting energy expenditure (REE) was predicted using the recommended Mifflin-St Jeor equation (MSJE), where the variables of height, weight, age, and gender were integrated on the moveable layers by scaled adjustment.</p>
+        <p>Also developed is a wheel to estimate the difference in energy intake (EI) using the weight gained or lost by time, in which the resulting ±kcal/day is identified on the logarithmically scaled wheel.</p>
+        <p>The product was developed as a part of the research assistantship funded by NIH through the Internal Medicine Department at the University of Nevada, Reno.</p>
+        <p><b>Related Skills:</b> Flash, Actionscript</p>
+        
+        <%= image_tag "energy_estimation_wheels.png", class: "screenshot", alt: "Energy Estimation Wheels" %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+

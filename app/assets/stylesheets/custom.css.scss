@@ -148,8 +148,8 @@ a {
   color: #3333cc;
   
   &:hover {
-  text-decoration: underline;
-  color: #6688dd;
+    text-decoration: underline;
+    color: #6688dd;
   }
 }
 
@@ -351,7 +351,7 @@ tr:last-child td {
     border: 2px solid #ffffff;
     @include border-radius(20px);
     @include box-shadow(0, 0, 5px, #666666);
-    background-color: #404040;
+    background-color: #2a2a2a;
     text-align: center;
     font-size: 1.1em;
     font-weight: normal;
@@ -367,9 +367,10 @@ tr:last-child td {
         border: 1px solid #88bbff;
         @include box-shadow(0, 0, 7px, #88bbff);
     }
+    
     span {
-        @include box-shadow(0, 0, 8px, #999999);
-      background-color: #555555;
+      @include box-shadow(0, 0, 8px, #999999);
+      background-color: #404040;
       color: #ffffff;
     }
   }
@@ -472,3 +473,74 @@ tr:last-child td {
   }
 }
 
+.project-list {
+  width: 770px;
+  margin: 20px 15px;
+  @include border-radius(7px);
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+}
+
+  
+.toggle-all-display-div, .toggle-next-display-div {
+  @extend a;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+  
+.project-block {
+  padding: 15px 15px;
+  border-bottom: 1px solid #cfcfcf;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  .project-title {
+    display: inline;
+  }
+  
+  p {
+    margin: 10px 0 0;
+  }
+    
+  .toggle-next-display-div {
+    display: inline;
+    margin-left: 5px;
+  }
+}
+ 
+.project-title {
+  font-weight: bold;
+  color: #444444;
+  margin-bottom: 5px;
+}
+
+.project-screenshot {
+  height: 620px;
+  position: relative;
+}
+  
+.screenshot {
+  margin-top: 20px;
+  border: 1px solid #bbbbbb;
+  @include border-radius;
+  @include box-shadow(0, 0, 7px, #aaaaaa);
+}
+
+#sunprism-scenario-manager {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#sunprism-visualizer {
+    position: absolute;
+    top: 220px;
+    left: 220px;
+}
+
+#survey-builder-report {
+  margin-left: 20px;
+}
