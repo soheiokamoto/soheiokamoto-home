@@ -32,14 +32,14 @@
       $('.toggle-all-display-div').click(function(){
           if( $(this).text() == "[Hide All]" )
           {
-              $('.display-div').hide();
+              $('.display-div').slideUp("fast");
               $('.toggle-next-display-div').text("[Show detail]");
               
               $(this).text("[Show All]");
           }
           else
           {
-              $('.display-div').show();
+              $('.display-div').slideDown("fast");
               $('.toggle-next-display-div').text("[Hide detail]");
               
               $(this).text("[Hide All]");
