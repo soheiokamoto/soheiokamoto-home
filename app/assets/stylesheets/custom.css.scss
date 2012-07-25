@@ -128,7 +128,7 @@ footer {
 }
 
 h1 {
-  margin: 15px 0px 10px 0px;
+  margin: 15px 0px 20px 0px;
   font-size: 1.4em;
   font-weight: normal;
 }
@@ -154,8 +154,8 @@ a {
 }
 
 
-ul {
-  margin: 0;
+ul, ol {
+  margin: 10px 0 0 0;
   padding: 0;
   
   li {
@@ -165,7 +165,7 @@ ul {
 }
 
 .breadcrumb {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   
   ul {
     margin: 0;
@@ -317,6 +317,7 @@ tr:last-child td {
   clear: both;
 }
 
+
 .page-show {
   margin-top: 30px;
   border-top: 1px solid #bbbbbb;
@@ -329,6 +330,45 @@ tr:last-child td {
   @include box-shadow(0, 0, 5px, #aaaaaa);
 }
 
+div.code {
+  clear: both;
+  padding: 3px 0 3px 0;
+  
+  p {
+    display: inline;
+    padding: 2px 5px;
+    @include border-radius;
+    background: #111111;
+    color: #d0d0d0;
+  }
+}
+
+div.code-error {
+  width: 60%;
+  margin-bottom: 15px;
+  padding: 2px 5px 2px;
+  @include border-radius;
+  background: #111111;
+  color: #ffffaa;
+}
+
+.steps {
+  margin: 20px 0 0 0;
+  
+  li {
+    margin: 10px 0px 20px 25px;
+  }
+  
+  p {
+    margin-top: 10px;
+  }
+}
+
+span.code {
+  padding: 0 3px;
+  background: #bbbbbb;
+  color: #222222;
+}
 
 /* page specific css */
 
@@ -375,7 +415,6 @@ tr:last-child td {
     }
   }
 }
-
 
 .about-me-child-pages {
   margin-top: 40px;
@@ -442,6 +481,7 @@ tr:last-child td {
   padding-right: 10px;
 }
 
+
 .publication-list {
   width: 770px;
   margin: 20px 15px;
@@ -479,7 +519,6 @@ tr:last-child td {
   @include border-radius(7px);
   @include box-shadow(0, 0, 5px, #aaaaaa);
 }
-
   
 .toggle-all-display-div, .toggle-next-display-div {
   @extend a;
@@ -544,3 +583,4 @@ tr:last-child td {
 #survey-builder-report {
   margin-left: 20px;
 }
+
