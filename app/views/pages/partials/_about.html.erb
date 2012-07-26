@@ -1,0 +1,110 @@
+<%#= render 'layouts/breadcrumb' %>
+
+<h1>About This Website</h1>
+
+<div class="development-tools">
+  <div class="back-end-tools">
+    <%= link_to("http://rubyonrails.org/", :target => '_blank') do %>
+      <%= image_tag "rails_39x50.png", class: "tool-icon", alt: "Ruby on Rails" %>
+    <% end %>
+    
+    <%= link_to("http://git-scm.com/", :target => '_blank') do %>
+      <%= image_tag "Git-Logo-2Color_96x50.png", class: "tool-icon", alt: "Git" %>
+    <% end %>
+    
+    <%= link_to("http://www.heroku.com/", :target => '_blank') do %>
+      <%= image_tag "heroku-logo-light-132x50.png", class: "tool-icon", alt: "Heroku" %>
+    <% end %>
+    
+    <%= link_to("https://github.com/", :target => '_blank') do %>
+      <%= image_tag "GitHub_90x50.png", class: "tool-icon", alt: "GitHub" %>
+    <% end %>
+  </div>
+  
+  <div class="front-end-tools">
+    <%= link_to("http://www.w3.org/TR/html5/", :target => '_blank') do %>
+      <%= image_tag "html5-badge-h-css3_62x50.png", class: "tool-icon", alt: "HTML5 & CSS3" %>
+    <% end %>
+    
+    <%= link_to("http://jquery.com/", :target => '_blank') do %>
+      <%= image_tag "jQuery_logo_color_onwhite_145x50.png", class: "tool-icon", alt: "jQuery" %>
+    <% end %>
+  </div>
+</div>
+
+<p>
+  This website has been created from the ground up, primarily for the following three purposes:
+</p>
+
+<ul>
+  <li>
+    Provide information about my skills and experience
+  </li>
+  <li>
+    Share useful resources and information on the internet
+  </li>
+  <li>
+    Build and improve skills on web development
+  </li>
+<ul>
+
+<p>
+  Above purposes are closely related to each other, and reinforce me to grow progressivly, which is the main goal of developing this website.
+</p>
+
+<br />
+
+<p>
+  This website has been developed in <%= link_to "Ruby on Rails", "http://rubyonrails.org/", :target => '_blank' %>, where <%= link_to "Git", "http://git-scm.com/", :target => '_blank' %> is used for the source code revision control, which allows a smooth deployment on <%= link_to "Heroku", "http://www.heroku.com/", :target => '_blank' %>, as well as maintaining repositories on <%= link_to "GitHub", "https://github.com/", :target => '_blank' %>.
+</p>
+<p>
+  In addition, <%= link_to "HTML5/CSS3", "http://www.w3.org/TR/html5/", :target => '_blank' %> and <%= link_to "jQuery", "http://jquery.com/", :target => '_blank' %> have been incorporated for the front-end, to provide contents cleanly and smoothly.
+</p>
+
+<div class="clear"></div>
+
+
+<h1>About Me</h1>
+      
+<%#= render 'layouts/child_pages_navigation', :url => @page.url %>
+  
+<div class="self-image">
+  <%= image_tag "sohei_lake_tahoe_225x300.jpg", class: "decorated-image", alt: "Sohei at Lake Tahoe" %>
+</div>
+
+<p>
+  I am originally from Japan, has made Reno, Nevada, USA my new home. I came to Nevada in 1999 and since then I have earned two degrees from the University of Nevada, Reno (UNR), a Bachelor of Arts in Psychology (2003) and a Master of Science in Computer Science (2005).
+</p>
+
+<p>
+  I have earned a PhD degree in Computer Science (2011) at the same university, with my advisor, <a href="http://www.cse.unr.edu/~dascalus" target="_blank">Dr. Sergiu Dascalu</a>, who is also a mentor and a friend providing me invaluable supports.
+</p>
+
+<p>
+  My main research interest is in human-computer interaction, web application development, project management, and software engineering, while my curiosity is open to various fields.
+</p>
+
+<p>
+  My most recent assignment as Postdoctoral Scholar at UNR involves me as a member of the Cyberinfrastructure team in the NSF-funded project "Nevada Infrastructure for Climate Change, Education, and Science". My job is to perform research and software engineering work on creating software frameworks that support interdisciplinary climate change research.
+</p>
+
+<div class="resume">
+  <%= link_to("resume_sohei_okamoto.pdf", :target => '_blank') do %>
+    <span>R&#233;sum&#233;</span  >
+    <%= image_tag("resume_sohei_okamoto.png", class: "decorated-image", alt: "Sohei Okamoto's Resume") %>
+  <% end %>
+</div>
+
+
+<% child_pages = visible_child_pages(@page.url) %>
+<% if !child_pages.nil? %>
+  <nav class="about-me-child-pages">
+    <ul>
+      <% child_pages.each do |page| %>
+        <li>
+          <%= link_to page.title, show_page_path(page.url) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>

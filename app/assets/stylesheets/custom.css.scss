@@ -41,6 +41,9 @@ $border-bottom-radius: 7px;
 $side-padding: 25px;
 
 .site-container {
+  /* fixed header
+  padding-top: 30px;
+  */
   margin-bottom: 30px;
   @include box-shadow;
   @include border-radius($border-bottom-radius, bottom-left);
@@ -51,6 +54,18 @@ $side-padding: 25px;
   height: 23px;
   padding: 5px 10px 0px 10px;
   border: 1px solid #333333;
+  
+  /* fixed header
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  
+  height: 25px;
+  width: 880px;
+  padding: 5px 10px 0px 10px;
+  border-bottom: 1px solid #cccccc;
+  */
+  
   background: #222222;
     
   #logo {
@@ -141,6 +156,7 @@ h2 {
 
 p {
   margin: 0px 0px 10px 0px;
+  line-height: 1.3em;
 }
 
 a { 
@@ -262,13 +278,13 @@ select {
 }
 
 .input-view-check-box {
-    display: block;
-    height: 23px;
-    margin: 4px 0px 0px;
+  display: block;
+  height: 23px;
+  margin: 4px 0px 0px;
 }
 
 .check-box-image {
-    margin-top: 1px;
+  margin-top: 1px;
 }
 
 $table-border: #aaaaaa;
@@ -371,6 +387,46 @@ span.code {
 }
 
 /* page specific css */
+
+.development-tools {
+  float: right;
+  margin: 2px 30px 20px 45px;
+  width: 295px;
+  text-align: center;
+  
+  a {
+    text-decoration: none;
+  }
+}
+
+.back-end-tools, .front-end-tools {
+  padding-top: 25px;
+}
+
+.tool-icon {
+  margin: 10px;
+  padding: 4px;
+  border: 1px solid #bbbbbb;
+  @include border-radius;
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+}
+
+.tool-icon-div {
+  float: left;
+  height: 52px;
+  margin-bottom: 4px;
+  padding: 2px;
+  border: 1px solid #bbbbbb;
+  @include border-radius;
+  @include box-shadow(0, 0, 5px, #aaaaaa);
+  text-align: center;
+  
+  .tool-title {
+    font-size: 9px;
+    font-weight: bolder;
+  }
+}
+
 
 .self-image {
   float: right;
