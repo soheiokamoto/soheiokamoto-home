@@ -57,7 +57,7 @@ SoheiokamotoHome::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   
-  root to: 'pages#show_page', url: 'about-me'
+  root to: 'pages#show_page', url: 'about'
     
   resources :pages
   match ':url', to: 'pages#show_page', as: 'show_page'
