@@ -143,15 +143,15 @@ footer {
 }
 
 h1 {
-  margin: 15px 0px 20px 0px;
+  margin: 20px 0px 20px 0px;
   font-size: 1.4em;
   font-weight: normal;
 }
 
 h2 {
-  margin: 5px 0px 10px 0px;
+  margin: 25px 0px 10px 0px;
   font-size: 1.2em;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 p {
@@ -174,9 +174,27 @@ ul, ol {
   margin: 10px 0 0 0;
   padding: 0;
   
+  p {
+    margin-top: 10px;
+  }
+}
+
+ul li {
+  margin: 0px 0px 10px 20px;
+  padding: 0 0 0 5px;
+}
+
+ol li {
+  margin: 0px 0px 10px 25px;
+  padding: 0 0 0 0;
+}
+
+ul.expaneded, ol.expaneded {
+  margin-top: 20px;
+  
   li {
-    margin: 0px 0px 10px 25px;
-    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 }
 
@@ -368,29 +386,21 @@ div.code-error {
   color: #ffffaa;
 }
 
-.steps {
-  margin: 20px 0 0 0;
-  
-  li {
-    margin: 10px 0px 20px 25px;
-  }
-  
-  p {
-    margin-top: 10px;
-  }
-}
-
 span.code {
   padding: 0 3px;
   background: #bbbbbb;
   color: #222222;
 }
 
+div.code-description {
+  padding-left: 4px;
+}  
+
 /* page specific css */
 
 .development-tools {
   float: right;
-  margin: 2px 30px 20px 45px;
+  margin: 32px 30px 30px 45px;
   width: 295px;
   text-align: center;
   
@@ -399,12 +409,8 @@ span.code {
   }
 }
 
-.back-end-tools, .front-end-tools {
-  padding-top: 25px;
-}
-
 .tool-icon {
-  margin: 10px;
+  margin: 20px 10px 20px 10px;
   padding: 4px;
   border: 1px solid #bbbbbb;
   @include border-radius;
@@ -426,7 +432,6 @@ span.code {
     font-weight: bolder;
   }
 }
-
 
 .self-image {
   float: right;

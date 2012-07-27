@@ -3,7 +3,6 @@
 <h1>About This Website</h1>
 
 <div class="development-tools">
-  <div class="back-end-tools">
     <%= link_to("http://rubyonrails.org/", :target => '_blank') do %>
       <%= image_tag "rails_39x50.png", class: "tool-icon", alt: "Ruby on Rails" %>
     <% end %>
@@ -19,17 +18,14 @@
     <%= link_to("https://github.com/", :target => '_blank') do %>
       <%= image_tag "GitHub_90x50.png", class: "tool-icon", alt: "GitHub" %>
     <% end %>
-  </div>
   
-  <div class="front-end-tools">
     <%= link_to("http://www.w3.org/TR/html5/", :target => '_blank') do %>
-      <%= image_tag "html5-badge-h-css3_62x50.png", class: "tool-icon", alt: "HTML5 & CSS3" %>
+      <%= image_tag "html5-badge-h-css3_69x50.png", class: "tool-icon", alt: "HTML5 & CSS3" %>
     <% end %>
     
     <%= link_to("http://jquery.com/", :target => '_blank') do %>
       <%= image_tag "jQuery_logo_color_onwhite_145x50.png", class: "tool-icon", alt: "jQuery" %>
     <% end %>
-  </div>
 </div>
 
 <p>
@@ -59,6 +55,9 @@
 </p>
 <p>
   In addition, <%= link_to "HTML5/CSS3", "http://www.w3.org/TR/html5/", :target => '_blank' %> and <%= link_to "jQuery", "http://jquery.com/", :target => '_blank' %> have been incorporated for the front-end, to provide contents cleanly and smoothly.
+</p>
+<p>
+  The complete source code of this website can be accessed at <%= link_to "https://github.com/soheiokamoto/soheiokamoto-home", "https://github.com/soheiokamoto/soheiokamoto-home", :target => '_blank' %>.
 </p>
 
 <div class="clear"></div>

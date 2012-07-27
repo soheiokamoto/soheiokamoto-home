@@ -1,0 +1,228 @@
+<%= render 'layouts/breadcrumb' %>
+
+<h1><%= @page.title %></h1>
+
+<%= render 'layouts/child_pages_navigation', :url => @page.url %>
+
+<p>
+	This post describes how to setup Git (on Windows), and also describes basic Git commands.<br />
+	These commands should be sufficient to perform most of Git operations for revision control.<br />
+</p>
+
+
+<h2>Setting up Git on Windows</h2>
+
+<ol type="1" class="expanded">
+	<li>
+	  Install <a target="_blank" href="http://msysgit.github.com/">Git for Windows</a>. The installer can be downloaded from <a target="_blank" href="http://code.google.com/p/msysgit/downloads/list?q=full+installer+official+git">here</a>.
+  </li>
+
+  <li>
+    Open Git Bash.
+  </li>
+
+  <li>
+	  <div class="code"><p>git config --global user.name "<i>username</i>"</p></div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git config --global user.email <i>user@email.com</i></p></div>
+  </li>
+
+  <li>
+    Generate SSH key to access remote repositories.
+  </li>
+</ol>
+
+<h2>Git Commands</h2>
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git init</p></div>
+	  <div class="code-description">
+	    Creates an empty repository.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git add .</p></div>
+    <div class="code-description">
+      Adds all files at current directory, recursively.
+	  </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git mv <i>current-file</i> <i>new-file</i></p></div>
+    <div class="code-description">
+  	  Moves/renames a file Git-way.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git rm <i>removing-file</i></p></div>
+    <div class="code-description">
+      Removes a file Git-way.
+    </div>
+  </li>
+</ul>
+
+<br />
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git status</p></div>
+    <div class="code-description">
+      Shows current changes.
+	  </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git diff</p></div>
+    <div class="code-description">
+  	  Shows differences from the last commit.
+    </div>
+  </li>
+</ul>
+
+<br />
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git commit -m "<i>commit message</i>"</p></div>
+    <div class="code-description">
+  	  Commits changes to a local repository.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git commit -am "<i>commit message</i>"</p></div>
+    <div class="code-description">
+	    Commits all modifications to a local repository.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git add -A && git commit -m "<i>commit message</i>"</p></div>
+    <div class="code-description">
+	    Commits all changes including created and deleted files.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git commit --amend -m "<i>new commit message</i>"</p></div>
+    <div class="code-description">
+	    Amend/change last commit message.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git log</p></div>
+    <div class="code-description">
+	    Lists commits. ('q' to quit)
+    </div>
+  </li>
+  <li>
+	  <div class="code"><p>git checkout</p></div>
+    <div class="code-description">
+  	  Restores previous commit. ('-f' to force overwrite)
+    </div>
+  </li>
+</ul>
+
+<br />
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git checkout -b <i>new-branch-name</i></p></div>
+    <div class="code-description">
+	    Checkouts and creates a new branch.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git branch</p></div>
+    <div class="code-description">
+	    Lists existing branches.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git checkout master</p></div>
+    <div class="code-description">
+	    Switches to 'master' branch.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git merge <i>branch-name</i></p></div>
+    <div class="code-description">
+	    Merges a branch to 'master'.
+    </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git branch -d <i>branch-name</i></p></div>
+    <div class="code-description">
+	    Deletes a branch.
+    </div>
+  </li>
+</ul>
+
+<br />
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git config --global alias.<i>alias-name</i> <i>command-string</i></p></div>
+    <div class="code-description">
+	    Associates <i>command-string</i> to <i>alias-name</i>.
+    </div>
+  </li>
+</ul>
+
+<br />
+
+<ul class="expanded">
+  <li>
+	  <div class="code"><p>git remote add <i>remote-name</i> <i>remote-url</i></p></div>
+    <div class="code-description">
+      Adds a remote repository from <i>remote-url</i> and refer it as <i>remote-name</i>.
+	  </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git push -u <i>remote-name</i> master</p></div>
+    <div class="code-description">
+      Pushes 'master' to <i>remote-name</i> (at <i>remote-url</i>).
+	  </div>
+  </li>
+  
+  <li>
+	  <div class="code"><p>git push <i>remote-name</i></p></div>
+    <div class="code-description">
+	    Pushes 'master' to <i>remote-name</i> (after pushing once).
+	  </div>
+  </li>
+
+  <li>
+	  <div class="code"><p>git remote rename <i>current-remote-name</i> <i>new-remote-name</i></p></div>
+    <div class="code-description">
+	    Renames a remote name.
+	  </div>
+  </li>
+
+  <li>
+	  <div class="code"><p>git clone <i>remote-url</i></p></div>
+    <div class="code-description">
+	    Clones a remote repository from <i>remote-url</i>.
+	  </div>
+  </li>
+</ul>
+
+<br />
+
+<b>Resource:</b>
+<ul>
+  <li>
+	  <a target="_blank" href="http://www.vogella.com/articles/Git/article.html">Git Tutorial (http://www.vogella.com/articles/Git/article.html)</a>
+  </li>
+</ul>
