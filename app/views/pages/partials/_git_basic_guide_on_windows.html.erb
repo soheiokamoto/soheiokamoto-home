@@ -6,7 +6,7 @@
 
 <p>
 	This post describes how to setup Git (on Windows), and also describes basic Git commands.<br />
-	These commands should be sufficient to perform most of Git operations for revision control.<br />
+	These commands should be sufficient to perform most of Git operations for revision control.
 </p>
 
 
@@ -22,11 +22,11 @@
   </li>
 
   <li>
-	  <div class="code"><p>git config --global user.name "<i>username</i>"</p></div>
+	  <div class="code"><code>git config --global user.name "<i>username</i>"</code></div>
   </li>
   
   <li>
-	  <div class="code"><p>git config --global user.email <i>user@email.com</i></p></div>
+	  <div class="code"><code>git config --global user.email <i>user@email.com</i></code></div>
   </li>
 
   <li>
@@ -38,191 +38,435 @@
 
 <ul class="expanded">
   <li>
-	  <div class="code"><p>git init</p></div>
-	  <div class="code-description">
-	    Creates an empty repository.
-    </div>
+    <h3>Repository Management</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git init</code></div>
+        <div class="code-description">
+          Creates an empty repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git add .</code></div>
+        <div class="code-description">
+          Adds all files at current directory, recursively.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git mv <i>current-file</i> <i>new-file</i></code></div>
+        <div class="code-description">
+          Moves/renames a file Git-way.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git rm <i>removing-file</i></code></div>
+        <div class="code-description">
+          Removes a file Git-way.
+        </div>
+      </li>
+    </ul>
   </li>
   
   <li>
-	  <div class="code"><p>git add .</p></div>
-    <div class="code-description">
-      Adds all files at current directory, recursively.
-	  </div>
+    <h3>Showing Changes</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git status</code></div>
+        <div class="code-description">
+          Shows current changes.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git diff</code></div>
+        <div class="code-description">
+          Shows differences from the last commit.
+        </div>
+      </li>
+    </ul>
   </li>
   
   <li>
-	  <div class="code"><p>git mv <i>current-file</i> <i>new-file</i></p></div>
-    <div class="code-description">
-  	  Moves/renames a file Git-way.
-    </div>
+    <h3>Committing Changes</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git commit -m "<i>commit message</i>"</code></div>
+        <div class="code-description">
+          Commits changes to a local repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git commit -am "<i>commit message</i>"</code></div>
+        <div class="code-description">
+          Commits all modifications to a local repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git add -A && git commit -m "<i>commit message</i>"</code></div>
+        <div class="code-description">
+          Commits all changes including created and deleted files.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git commit --amend -m "<i>new commit message</i>"</code></div>
+        <div class="code-description">
+          Amend/change last commit message.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git log</code></div>
+        <div class="code-description">
+          Lists commits. ('q' to quit)
+        </div>
+      </li>
+      <li>
+        <div class="code"><code>git checkout</code></div>
+        <div class="code-description">
+          Restores previous commit. ('-f' to force overwrite)
+        </div>
+      </li>
+    </ul>
   </li>
   
   <li>
-	  <div class="code"><p>git rm <i>removing-file</i></p></div>
-    <div class="code-description">
-      Removes a file Git-way.
-    </div>
+    <h3>Branch Management</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git checkout -b <i>new-branch-name</i></code></div>
+        <div class="code-description">
+          Checkouts and creates a new branch.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git branch</code></div>
+        <div class="code-description">
+          Lists existing branches.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git checkout master</code></div>
+        <div class="code-description">
+          Switches to master branch.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git merge <i>branch-name</i></code></div>
+        <div class="code-description">
+          Merges a branch to master.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git branch -d <i>branch-name</i></code></div>
+        <div class="code-description">
+          Deletes a branch.
+        </div>
+      </li>
+    </ul>
+  </li>
+  
+  <li>
+    <h3>Command Alias</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git config --global alias.<i>alias-name</i> <i>command-string</i></code></div>
+        <div class="code-description">
+          Associates <i>command-string</i> to <i>alias-name</i>.
+        </div>
+      </li>
+    </ul>
+  </li>
+  
+  <li>
+    <h3>Remote Repository Management</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git remote add <i>remote-name</i> <i>remote-url</i></code></div>
+        <div class="code-description">
+          Adds an entry for a remote repository at <i>remote-url</i> and refer it as <i>remote-name</i>.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push -u <i>remote-name</i> master</code></div>
+        <div class="code-description">
+          Pushes master to <i>remote-name</i> (at <i>remote-url</i>).
+        </div>
+        
+        <br />
+        
+        <div class="code"><code>git push <i>remote-name</i></code></div>
+        <div class="code-description">
+          Pushes master to <i>remote-name</i> (after pushing once).
+        </div>
+      </li>
+    
+      <li>
+        <div class="code"><code>git remote rename <i>current-remote-name</i> <i>new-remote-name</i></code></div>
+        <div class="code-description">
+          Renames a remote name.
+        </div>
+      </li>
+    
+      <li>
+        <div class="code"><code>git clone <i>remote-url</i></code></div>
+        <div class="code-description">
+          Clones a remote repository from <i>remote-url</i>.
+        </div>
+      </li>
+    </ul>
   </li>
 </ul>
 
-<br />
 
-<ul class="expanded">
+<h2>Creating New Local and Remote (SSH) Repository</h2>
+
+<p>
+	Below shows how to create a new local and remote repository, connecting through SSH.<br />
+	The environment on the remote repository must have Git installed as well.<br />
+	Also, this tutorial shows how to setup the post-receive hook. <br />
+	This is very useful for deploying as it can checkout all files when pushed.
+</p>
+
+<ol type="1" class="expanded">
   <li>
-	  <div class="code"><p>git status</p></div>
-    <div class="code-description">
-      Shows current changes.
-	  </div>
+    <h3>Setup Command Alias (on local)</h3>
+    
+    <ol>
+      <li>
+        <div class="code"><code>git config --global alias.<i>commit-all</i> '!git add -A && git commit'</code></div>
+        <div class="code-description">
+          Create a command alias to commits all changes including created and deleted files.<br />
+          This is just to simplify the commit command (i.e., git <i>commit-all</i>), and only needs to be done once.
+        </div>
+      </li>
+    </ol>
   </li>
   
   <li>
-	  <div class="code"><p>git diff</p></div>
-    <div class="code-description">
-  	  Shows differences from the last commit.
-    </div>
-  </li>
-</ul>
-
-<br />
-
-<ul class="expanded">
-  <li>
-	  <div class="code"><p>git commit -m "<i>commit message</i>"</p></div>
-    <div class="code-description">
-  	  Commits changes to a local repository.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git commit -am "<i>commit message</i>"</p></div>
-    <div class="code-description">
-	    Commits all modifications to a local repository.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git add -A && git commit -m "<i>commit message</i>"</p></div>
-    <div class="code-description">
-	    Commits all changes including created and deleted files.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git commit --amend -m "<i>new commit message</i>"</p></div>
-    <div class="code-description">
-	    Amend/change last commit message.
-    </div>
+    <h3>Setup Local Repository (on local)</h3>
+    
+    <ol>
+      <li>
+        <div class="code"><code>mkdir <i>new-app-dir</i></code></div>
+      </li>
+      
+      <li>
+        <div class="code"><code>cd <i>new-app-dir</i></code></div>
+      </li>
+                    
+      <li>
+        <div class="code"><code>git init</code></div>
+        <div class="code-description">
+          Creates an empty repository.
+        </div>
+      </li>
+      
+      <li>
+        Create <span class="code">.gitignore</span> file and list files to exclude from revision control.
+      </li>
+      
+      <li>
+        <div class="code"><code>git commit-all -m "<i>commit message</i>"</code></div>
+        <div class="code-description">
+          Commits all changes including created and deleted files.
+        </div>
+      </li>
+    </ol>
   </li>
   
   <li>
-	  <div class="code"><p>git log</p></div>
-    <div class="code-description">
-	    Lists commits. ('q' to quit)
-    </div>
-  </li>
-  <li>
-	  <div class="code"><p>git checkout</p></div>
-    <div class="code-description">
-  	  Restores previous commit. ('-f' to force overwrite)
-    </div>
-  </li>
-</ul>
-
-<br />
-
-<ul class="expanded">
-  <li>
-	  <div class="code"><p>git checkout -b <i>new-branch-name</i></p></div>
-    <div class="code-description">
-	    Checkouts and creates a new branch.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git branch</p></div>
-    <div class="code-description">
-	    Lists existing branches.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git checkout master</p></div>
-    <div class="code-description">
-	    Switches to 'master' branch.
-    </div>
-  </li>
-  
-  <li>
-	  <div class="code"><p>git merge <i>branch-name</i></p></div>
-    <div class="code-description">
-	    Merges a branch to 'master'.
-    </div>
+    <h3>Setup Remote Repository (on remote)</h3>
+    
+    <ol>
+      <li>
+        <div class="code"><code>mkdir <i>new-app-dir</i></code></div>
+      </li>
+      
+      <li>
+        <div class="code"><code>cd <i>new-app-dir</i></code></div>
+      </li>
+                                                              
+      <li>
+        <div class="code"><code>mkdir .git</code></div>
+      </li>
+      
+      <li>
+        <div class="code"><code>cd .git</code></div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git init --bare</code></div>
+        <div class="code-description">
+          Creates a bare repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>cd hooks</code></div>
+      </li>
+      <li>
+        <p>Create a file called <span class="code">post-receive</span> with the following lines:</p>
+        <div class="code-block"><code><%= render 'pages/partials/git_hooks_post_receive' %></code></div>
+      </li>
+      
+      <li>
+        <div class="code"><code>chmod +x post-receive</code></div>
+      </li>
+    </ol>
   </li>
   
   <li>
-	  <div class="code"><p>git branch -d <i>branch-name</i></p></div>
-    <div class="code-description">
-	    Deletes a branch.
-    </div>
+    <h3>Push to Remote Repository (from local)</h3>
+    
+    <ul>
+      <li>
+        <div class="code"><code>git remote add <i>remote-name</i> ssh://<i>username</i>@<i>example.com</i>/<i>app-path</i>/.git</code></div>
+        <div class="code-description">
+          Adds an entry for a remote repository using SSH and refer it as <i>remote-name</i>.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push -u <i>remote-name</i> master</code></div>
+        <div class="code-description">
+          Pushes master to <i>remote-name</i> (using SSH).
+        </div>
+        
+        <br />
+      
+        <div class="code"><code>git push <i>remote-name</i></code></div>
+        <div class="code-description">
+          Pushes master to <i>remote-name</i> (after pushing once).
+        </div>
+      </li>
+      
+      <li>
+        Add all files excluded by <span class="code">.gitignore</span> but needed for the application.
+      </li>
+    </ul>
   </li>
-</ul>
+</ol>
 
-<br />
 
-<ul class="expanded">
+<h2>Setting up GitHub Repository</h2>
+
+<p>
+	Below shows how to setup a remote repository on <a target="_blank" href="https://github.com/">GitHub.com</a>.<br />
+	GitHub provides a great service for maintaining central repositories (free for public repositories).
+</p>
+
+<ol type="1" class="expanded">
   <li>
-	  <div class="code"><p>git config --global alias.<i>alias-name</i> <i>command-string</i></p></div>
-    <div class="code-description">
-	    Associates <i>command-string</i> to <i>alias-name</i>.
-    </div>
-  </li>
-</ul>
+    <h3>Create SSH Key</h3>
 
-<br />
-
-<ul class="expanded">
-  <li>
-	  <div class="code"><p>git remote add <i>remote-name</i> <i>remote-url</i></p></div>
-    <div class="code-description">
-      Adds a remote repository from <i>remote-url</i> and refer it as <i>remote-name</i>.
-	  </div>
+    <ol>
+      <li>
+        Open Git GUI
+      </li>
+      
+      <li>
+        Go to <i>Help</i> -> <i>Show SSH Key</i>
+      </li>
+      
+      <li>
+        Click <i>Generate Key</i>
+      </li>
+      
+      <li>
+        Enter passphrase
+      </li>
+      
+      <li>
+        Click <i>Copy To Clipboard</i>
+      </li>
+    </ol>
   </li>
   
   <li>
-	  <div class="code"><p>git push -u <i>remote-name</i> master</p></div>
-    <div class="code-description">
-      Pushes 'master' to <i>remote-name</i> (at <i>remote-url</i>).
-	  </div>
+    <h3>Setup GitHub Repository</h3>
+
+    <ol>
+      <li>
+        Go to <a target="_blank" href="https://github.com/">GitHub.com</a>.
+      </li>
+      
+      <li>
+        Create an account if you haven't.
+      </li>
+      
+      <li>
+        Go to <i>Account Settings</i>.
+      </li>
+      
+      <li>
+        Go to <i>SSH Keys</i>.
+      </li>
+      
+      <li>
+        Click on <i>Add SSH key</i>.
+      </li>
+      
+      <li>
+        Paste the SSH key (from the previous section).<br />
+        (Title can be anything, i.e., "Git GUI generated key")
+      </li>
+      
+      <li>
+        Create a new repository.
+      </li>
+    </ol>
   </li>
   
   <li>
-	  <div class="code"><p>git push <i>remote-name</i></p></div>
-    <div class="code-description">
-	    Pushes 'master' to <i>remote-name</i> (after pushing once).
-	  </div>
+    <h3>Push to GitHub.com Remote Repository (from local)</h3>
+    
+    <ol>
+      <li>
+        <div class="code"><code>git remote add origin git@github.com:<i>username</i>/<i>repository-name.git</i></code></div>
+        <div class="code-description">
+          Adds an entry for a remote repository on GitHub and refer it as origin.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push -u origin master</code></div>
+        <div class="code-description">
+          Pushes master to origin (on GitHub).
+        </div>
+        
+        <br />
+      
+        <div class="code"><code>git push</code></div>
+        <div class="code-description">
+          Pushes master to origin (after pushing once).
+        </div>
+      </li>
+    </ol>
   </li>
+</ol>
 
-  <li>
-	  <div class="code"><p>git remote rename <i>current-remote-name</i> <i>new-remote-name</i></p></div>
-    <div class="code-description">
-	    Renames a remote name.
-	  </div>
-  </li>
 
-  <li>
-	  <div class="code"><p>git clone <i>remote-url</i></p></div>
-    <div class="code-description">
-	    Clones a remote repository from <i>remote-url</i>.
-	  </div>
-  </li>
-</ul>
+<h2>Resource:</h2>
 
-<br />
-
-<b>Resource:</b>
 <ul>
   <li>
-	  <a target="_blank" href="http://www.vogella.com/articles/Git/article.html">Git Tutorial (http://www.vogella.com/articles/Git/article.html)</a>
+	  <a target="_blank" href="http://www.vogella.com/articles/Git/article.html">Git Tutorial by Lars Vogel</a>
   </li>
 </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726231105) do
+ActiveRecord::Schema.define(:version => 20120727121931) do
 
   create_table "pages", :force => true do |t|
     t.integer  "parent_page_id"

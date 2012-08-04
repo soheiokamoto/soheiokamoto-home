@@ -1,0 +1,598 @@
+<%= render 'layouts/breadcrumb' %>
+
+<h1><%= @page.title %></h1>
+
+<%= render 'layouts/child_pages_navigation', :url => @page.url %>
+
+<p>
+	This post describes how to setup an environment to develop a Ruby on Rails application and deploy it on <a target="_blank" href="http://www.heroku.com/">Heroku.com</a>.<br />
+	Heroku is a Platform-as-a-Service (PaaS) that provides deployment environment on the cloud.<br />
+	Ruby on Rails web application is well-supported by Heroku in addition to other environment, such as Java.<br />
+	Utilizing Heroku and Git significantly simplifies the development and deployment process, otherwise very difficult tasks.
+</p>
+
+<p>
+  This tutorial extensibly uses Rails and Git, and focuses the development and deployment process.<br />
+  See <a target="_blank" href="setting-up-ruby-on-rails-on-windows"><%= Page.find_by_url('setting-up-ruby-on-rails-on-windows').title %></a> and <a target="_blank" href="git-basic-guide-on-windows"><%= Page.find_by_url('git-basic-guide-on-windows').title %></a> for more detail.
+</p>
+
+<p>
+  Below describes setting up the environment for the development and deployment.<br />
+  GitHub is used as the central repository for the revision control.<br />
+  Two Heroku applications/repositories are created for the staging and production deployment.<br />
+  Staging is used as an intermediate testing environment, to avoid any unexpected interference for the production.
+</p>
+
+<ol type="1" class="expanded">
+	<li>
+    Develop and test locally
+  </li>
+  
+  <li>
+    Deploy and test on staging environment
+  </li>
+  
+  <li>
+    Deploy on production environment
+  </li>
+</ol>
+
+<h2>Initial Setup</h2>
+
+<ol type="1" class="expanded">
+	<li>
+    <div class="code"><code>git config --global alias.<i>commit-all</i> '!git add -A && git commit'</code></div>
+    <div class="code-description">
+      Create a command alias to commits all changes including created and deleted files.<br />
+      This is just to simplify the commit command (i.e., git <i>commit-all</i>), and only needs to be done once.
+    </div>
+  </li>
+  
+  <li>
+    Setup <a target="_blank" href="https://github.com/">GitHub.com</a> account if you haven't (including SSH Key).<br />
+    See <a target="_blank" href="git-basic-guide-on-windows">Git Basic Guide (on Windows)</a> for more detail.
+  </li>
+  
+  <li>
+    Setup <a target="_blank" href="http://www.heroku.com/">Heroku.com</a> account if you haven't.<br />
+    Also, go to <a target="_blank" href="https://heroku.com/confirm">https://heroku.com/confirm</a>.
+  </li>
+</ol>
+	
+	
+<h2>Application Setup</h2>
+
+<ol type="1" class="expanded">
+	<li>
+    <div class="code"><code>rails new <i>new-app-name</i></code></div>
+    <div class="code-description">
+      Creates a new Rails application.
+    </div> 
+    <br />
+    <div class="code"><code>rails new <i>new-app-name</i> --skip-test-unit</code></div>
+    <div class="code-description">
+      Skips the default Test::Unit framework, and use Rspec.
+    </div>    
+  </li>
+
+  <li>
+    <div class="code"><code>cd <i>new-app-name</i></code></div>
+  </li>
+                  
+	<li>
+    Update <span class="code">Gemfile</span>:<br />
+      <p>Especially, enable 'sqlite3' gem only for development (heroku uses PostgreSQL).</p>
+      <p>Also, add 'rspec-rails' and 'capybara' for testing.</p>
+      
+      <div class="code-block"><code><%= render 'pages/partials/ruby_on_raills_gemfile' %></code></div>
+   
+      <p>(May have to specify version for each gem to match with the deployment environment)</p>
+  </li>
+  
+	<li>
+    <div class="code"><code>bundle install --without production</code></div>
+    <div class="code-description">
+      Insall gems specified in <span class="code">Gemfile</span>.
+    </div> 
+    <br />
+    <div class="code"><code>bundle install</code></div>
+    <div class="code-description">
+      (after once)
+    </div>    
+  </li>
+  
+	<li>
+    <div class="code"><code>rails generate rspec:install</code></div>
+    <div class="code-description">
+      Runs Rspec generator.
+    </div>
+  </li>
+</ol>
+  
+
+<h2>Repository Setup</h2>
+
+<ol type="1" class="expanded">
+	<li>
+    <h3>Setup Local Repository</h3>
+
+    <ol type="1" class="expanded">
+      <li>
+        <div class="code"><code>git init</code></div>
+        <div class="code-description">
+          Creates an empty repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git commit-all -m "<i>Create new application</i>"</code></div>
+        <div class="code-description">
+          Commits all changes including created and deleted files.
+        </div>
+      </li>
+    </ol>
+  </li>
+  
+	<li>
+    <h3>Setup GitHub Repository</h3>
+
+    <ol type="1" class="expanded">
+      <li>
+        Create a new repository at <a target="_blank" href="https://github.com/">GitHub.com</a>.
+      </li>
+      
+      <li>
+        <div class="code"><code>git remote add origin git@github.com:<i>username</i>/<i>repository-name.git</i></code></div>
+        <div class="code-description">
+          Adds an entry for a remote repository on GitHub and refer it as origin.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push -u origin master</code></div>
+        <div class="code-description">
+          Pushes master to origin (on GitHub).
+        </div>
+        
+        <br />
+      
+        <div class="code"><code>git push</code></div>
+        <div class="code-description">
+          Pushes master to origin (after pushing once).
+        </div>
+      </li>
+    </ol>
+  </li>
+  
+	<li>
+    <h3>Setup Heroku Staging Application/Repository</h3>
+
+    <ol type="1" class="expanded">
+      <li>
+        <div class="code"><code>heroku create --stack cedar --remote <i>staging</i></code></div>
+        <div class="code-description">
+          Creates new Heroku application, and <i>staging</i> remote repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroke rename <i>app-name-staging</i> --remote <i>staging</i></code></div>
+        <div class="code-description">
+          Renames the <i>staging</i> application to <i>app-name-staging</i> (Must be unique on Heroku).<br />
+          (This is optional)
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push <i>staging</i> master</code></div>
+        <div class="code-description">
+          Pushes master to <i>staging</i>.
+        </div>
+        <br />
+        <div class="code"><code>git push <i>staging</i></code></div>
+        <div class="code-description">
+          Pushes master to <i>staging</i> (after pushing once).
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku open --remote <i>staging</i></code></div>
+        <div class="code-description">
+          Opens the <i>staging</i> application in the browser.
+        </div>
+      </li>
+    </ol>
+  </li>
+  
+	<li>
+    <h3>Setup Heroku Production Application/Repository</h3>
+
+    <ol type="1" class="expanded">
+      <li>
+        <div class="code"><code>heroku create --stack cedar --remote <i>production</i></code></div>
+        <div class="code-description">
+          Creates new Heroku application, and <i>production</i> remote repository.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroke rename <i>app-name-production</i> --remote <i>production</i></code></div>
+        <div class="code-description">
+          Renames the <i>production</i> application to <i>app-name-production</i> (Must be unique on Heroku).<br />
+          (This is optional)
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push <i>production</i> master</code></div>
+        <div class="code-description">
+          Pushes master to <i>production</i>.
+        </div>
+        <br />
+        <div class="code"><code>git push <i>production</i></code></div>
+        <div class="code-description">
+          Pushes master to <i>production</i> (after pushing once).
+        </div>
+      </li>
+
+      <li>
+        <div class="code"><code>heroku open --remote <i>production</i></code></div>
+        <div class="code-description">
+          Opens the <i>production</i> application in the browser.
+        </div>
+      </li>
+      
+      <li>
+        Add CNAME entry for <i>www.example.com</i> (in your domain manager) pointing to <i>app-name-production</i>.herokuapp.com.<br />
+        (Optionally, add forward for naked domain to www subdomain)
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku domains:add <i>www.example.com</i> --remote <i>production</i></code></div>
+        <div class="code-description">
+          Adds the custom domain for the <i>production</i> application.
+        </div>
+      </li>
+      
+      <li>
+          Add <i>www.example.com</i> to <a target="_blank" href="http://www.wekkars.com/">www.wekkars.com</a> (May need to use <i>app-name-production</i>.herokuapp.com).<br />  
+          (Optional, but should do this for a free heroku account to keep the site active)
+      </li>
+    </ol>
+  </li>
+</ol>
+
+
+<h2>Development</h2>
+
+<ul class="expanded">
+	<li>
+    <div class="code"><code>git mv README.rdoc README.md</code></div>
+    <div class="code-description">
+      Renames the README file Git-way.
+    </div>
+	</li>
+	
+	<li>
+    Edit <span class="code">README.md</span>.
+	</li>
+	
+	<li>
+    Edit <span class="code">app/views/layouts/application.html.erb</span>.
+	</li>
+	
+	<li>
+    <h3>Add Controllers and Actions</h3>
+
+    <ul class="expanded">
+      <li>
+        <div class="code"><code>rails generate controller <i>ControllerNames</i> <i>action_name1</i> <i>action_name2</i> --no-test-framework</code></div>
+        <div class="code-description">
+          Creates a new controller with actions.
+        </div>
+      </li>
+	
+      <li>
+        <div class="code"><code>rails destroy controller <i>ControllerNames</i> <i>action_name1</i> <i>action_name2</i></code></div>
+        <div class="code-description">
+          Reverts the controller creation.
+        </div>
+      </li>
+	
+      <li>
+        Add an action to a controller:<br />
+        
+        <ol type="1" class="expanded">
+          <li>
+            <p>Add a 'get' line in <span class="code">config/routs.rb</span>:</p>
+            <div class="code-block"><code><%= render 'pages/partials/ruby_on_raills_routes' %></code></div>
+          </li>
+          
+          <li>
+            <p>Add a function in <span class="code">app/controller/<i>controller_names</i>.rb</span>:</p>
+            <div class="code-block"><code><%= render 'pages/partials/ruby_on_raills_controller' %></code></div>
+          </li>
+          
+          <li>
+            Create <span class="code">app/views/<i>controller_names</i>/<i>action_name</i>.html.erb</span>.
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  
+	<li>
+    <h3>Add Models</h3>
+
+    <ul class="expanded">
+      <li>
+        <div class="code"><code>rails generate model <i>ModelName</i> <i>field1:data-type</i> <i>field2:data-type</i></code></div>
+        <div class="code-description">
+          Creates a new model with fields.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>rails destroy model <i>ModelName</i></code></div>
+        <div class="code-description">
+          Reverts the model creation.
+        </div>
+      </li>
+    
+      <li>
+        <div class="code"><code>rails generate migration <i>add_new_column_name_to_model_name</i> <i>new_column_name:data-type</i></code></div>
+        <div class="code-description">
+          Adds a new column to attr_accessible in <span class="code">app/model/<i>model_name</i>.rb</span>.<br />
+          It also adds a database migration file in <span class="code">db/migration</span>.
+        </div>
+      </li>
+        
+      <li>
+        <h3>Database Migration</h3>
+        
+        <ul class="expanded">
+          <li>
+            <div class="code"><code>bundle exec rake db:migrate</code></div>
+            <div class="code-description">
+              Applies new migrations to the database.<br />
+              Any time model resources are added, the database needs to be update.
+            </div>
+          </li>
+            
+          <li>
+            <div class="code"><code>bundle exec rake db:rollback</code></div>
+            <div class="code-description">
+              Reverts the database migration.
+            </div>
+          </li>
+            
+          <li>
+            <div class="code"><code>bundle exec rake db:migrate VERSION=0</code></div>
+            <div class="code-description">
+              Restores the database to the initial version.
+            </div>
+          </li>
+            
+          <li>
+            <div class="code"><code>bundle exec rake db:reset</code></div>
+            <div class="code-description">
+              Resets the database.
+            </div>
+          </li>
+            
+          <li>
+            <div class="code"><code>bundle exec rake db:test:prepare</code></div>
+            <div class="code-description">
+              Prepares the test database.
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+	
+	<li>
+    <h3>Debug</h3>
+
+    <ul class="expanded">
+      <li>
+        From a controller:
+        
+        <ul class="expanded">
+          <li>
+            <span class="code">render :text => "<i>string</i>"</span>
+          </li>
+          <li>
+            <span class="code">render :text => params.inspect</span>
+          </li>
+        </ul>
+      </li>
+      
+      <li>
+        From a view:
+        
+        <ul class="expanded">
+          <li>
+            <span class="code">&lt;%= debug "<i>string</i>" %&gt;</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+	</li>
+	
+	<li>
+    <h3>Add Helpers</h3>
+    
+    <ul class="expanded">
+      <li>
+        Create <span class="code">app/helpers/application_helper.rb</span>
+      </li>
+    </ul>
+	</li>
+	
+	<li>
+    <h3>Add Integration Tests</h3>
+    
+    <ol type="1" class="expanded">
+      <li>
+        <div class="code"><code>rails generate integration_test <i>controller_names</i></code></div>
+      </li>
+      
+      <li>
+        Modify <span class="code">spec/requests/<i>controller_names</i>_spec.rb</span>
+      </li>
+      
+      <li>   
+        <div class="code"><code>bundle exec rspec spec/requests/<i>controller_names</i>_spec.rb</code></div>
+      </li>
+    </ol>
+	</li>
+	
+	<li>
+    <h3>Run Rails Console</h3>
+    
+    <ul class="expanded">
+      <li>
+        <div class="code"><code>rails console</code></div>
+        <div class="code-description">
+          Runs Rails in console mode to examine resources from the command line.
+        </div>
+        
+        <br />
+        
+        <div class="code"><code>rails c</code></div>
+        <div class="code-description">
+          (Shorthand command)
+        </div>
+      
+        <br />
+      
+        <div class="code"><code>exit</code></div>
+        <div class="code-description">
+          Closes the console. (Ctrl-D may work for the same purpose)
+        </div>
+      </li>
+      
+      <li>          
+        <div class="code"><code>rails console --sandbox</code></div>
+        <div class="code-description">
+          Rollbacks the database when closed.
+        </div>
+      </li>
+    </ul>      
+	</li>
+	
+	<li>
+    <h3>Run Rails Server</h3>
+    
+    <ol type="1" class="expanded">
+      <li>
+        <div class="code"><code>rails server</code></div>
+        <div class="code-description">
+          Runs the Rails server locally.<br />
+          (Need to run from the application's root folder.
+        </div>
+        
+        <br />
+        
+        <div class="code"><code>rails s</code></div>
+        <div class="code-description">
+          (Shorthand command)
+        </div>
+      </li>
+      
+      <li>
+        Test to see the Rails application at <span class="code">http://localhost:3000</span> (from an internet browser).
+      </li>
+    </ol>      
+	</li>
+	
+	<li>
+    <h3>Push to Remote Repositories</h3>
+    
+    <ol type="1" class="expanded">
+      <!--
+      <li>
+        <div class="code"><code>bundle exec rake assets:precompile</code></div>
+      </li>
+      -->
+      
+      <li>
+        <div class="code"><code>git commit-all -m "<i>commit message</i>"</code></div>
+        <div class="code-description">
+          Commits all changes including created and deleted files.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push</code></div>
+        <div class="code-description">
+          Pushes master to origin, which is GitHub.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push <i>staging</i></code></div>
+        <div class="code-description">
+          Pushes master to Heroku <i>staging</i>.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku run rake db:migrate --remote <i>staging</i></code></div>
+        <div class="code-description">
+          Updates the database on <i>staging</i> application.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku open --remote <i>staging</i></code></div>
+        <div class="code-description">
+          Opens the <i>staging</i> application in the browser.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>git push <i>production</i></code></div>
+        <div class="code-description">
+          Pushes master to Heroku <i>production</i>.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku run rake db:migrate --remote <i>production</i></code></div>
+        <div class="code-description">
+          Updates the database on <i>production</i> application.
+        </div>
+      </li>
+      
+      <li>
+        <div class="code"><code>heroku open --remote <i>production</i></code></div>
+        <div class="code-description">
+          Opens the <i>production</i> application in the browser.
+        </div>
+      </li>
+    </ol>
+	</li>
+</ul>
+
+
+<h2>Resource:</h2>
+
+<ul>
+  <li>
+    <a target="_blank" href="setting-up-ruby-on-rails-on-windows"><%= Page.find_by_url('setting-up-ruby-on-rails-on-windows').title %></a>
+  </li>
+  
+  <li>
+    <a target="_blank" href="git-basic-guide-on-windows"><%= Page.find_by_url('git-basic-guide-on-windows').title %></a>
+  </li>
+  
+  <li>
+    <a target="_blank" href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book">Ruby on Rails Tutorial (Book) by Michael Hartl</a>
+  </li>
+  
+  <li>
+    <a target="_blank" href="http://railsapps.github.com/rails-heroku-tutorial.html">Rails Heroku Tutorial by Daniel Kehoe</a>
+  </li>
+</ul>

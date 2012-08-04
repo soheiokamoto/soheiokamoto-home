@@ -1,0 +1,10 @@
+AppName::Application.routes.draw do
+    …
+    root to: 'controller_names#action_name'
+      
+    resources :controller_names
+    get 'controller_names/action_name'
+    
+    match '/some_name', to: 'controller_names#action_name'
+    …
+end

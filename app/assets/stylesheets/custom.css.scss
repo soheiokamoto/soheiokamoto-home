@@ -149,8 +149,15 @@ h1 {
 }
 
 h2 {
-  margin: 25px 0px 10px 0px;
+  margin: 30px 0px 10px 0px;
   font-size: 1.2em;
+  font-weight: bold;
+}
+
+
+h3 {
+  margin: 20px 0px 10px 0px;
+  font-size: 1.0em;
   font-weight: bold;
 }
 
@@ -189,7 +196,7 @@ ol li {
   padding: 0 0 0 0;
 }
 
-ul.expaneded, ol.expaneded {
+ul.expanded, ol.expanded {
   margin-top: 20px;
   
   li {
@@ -368,33 +375,34 @@ div.code {
   clear: both;
   padding: 3px 0 3px 0;
   
-  p {
-    display: inline;
-    padding: 2px 5px;
+  code {
+    padding: 4px 5px 2px 5px;
     @include border-radius;
     background: #111111;
     color: #d0d0d0;
   }
 }
 
-div.code-error {
+div.code-description {
+  padding-left: 4px;
+}  
+
+div.code-block {
   width: 60%;
   margin-bottom: 15px;
-  padding: 2px 5px 2px;
+  padding: 0px 5px 2px 5px;
   @include border-radius;
   background: #111111;
   color: #ffffaa;
+  white-space: pre-wrap;
 }
 
 span.code {
   padding: 0 3px;
+  @include border-radius;
   background: #bbbbbb;
   color: #222222;
 }
-
-div.code-description {
-  padding-left: 4px;
-}  
 
 /* page specific css */
 
