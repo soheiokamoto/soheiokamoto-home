@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  http_basic_authenticate_with name: ENV['username'], password: ENV['password'], except: :show_page
+  http_basic_authenticate_with name: ENV['username'], password: ENV['password'], except: [:show_page, :show_partial]
   
   def index
   	@pages = Page.all
@@ -44,6 +44,10 @@ class PagesController < ApplicationController
   
   def show_page
   	@page = Page.find_by_url(params[:url])
+  end
+  
+  def show_partial
+    render  partial: "pages/partials/#{params[:partial]}", content_type: Mime::TEXT
   end
 
 end

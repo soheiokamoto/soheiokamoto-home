@@ -61,5 +61,5 @@ SoheiokamotoHome::Application.routes.draw do
     
   resources :pages
   match ':url', to: 'pages#show_page', as: 'show_page'
-  
+  match 'partial/:partial', to: 'pages#show_partial', as: 'show_partial'
 end
